@@ -1,0 +1,95 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  --font-display: 'Space Grotesk', 'JetBrains Mono', sans-serif;
+
+  --color-bg: #0a0a0d;
+  --color-bg-raised: #111318;
+  --color-bg-inset: #0e0f13;
+  --color-border: #24262e;
+  --color-border-hi: #3a3d47;
+  --color-text: #e4e4e7;
+  --color-text-dim: #8b8f9a;
+  --color-text-faint: #55585f;
+  --color-accent: #ff5a1f;
+  --color-accent-dim: #ff5a1f66;
+  --color-ok: #33d17a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% -10%, rgba(255, 90, 31, 0.08), transparent 60%);
+  z-index: 0;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #0a0a0d;
+}
+
+.bracket-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.bracket-label::before {
+  content: '[ ';
+}
+.bracket-label::after {
+  content: ' ]';
+}
+
+.terminal-chrome {
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-border);
+}
+
+.terminal-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out both;
+}
